@@ -10,10 +10,14 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
 Plugin 'groenewege/vim-less'
-
 Plugin 'mattn/emmet-vim'
+Plugin 'taglist.vim'
+Plugin 'jshint.vim'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -35,14 +39,23 @@ filetype plugin indent on    " required
 " syntax highliting on
 syntax on
 
-" make tab = 2 spaces
+" make tab = 4 spaces
 filetype plugin indent on
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set expandtab
 
 " set tab = 4 spaces for JS
 autocmd Filetype javascript setlocal tabstop=4 shiftwidth=4
 
+" set tab = 2 spaces for JSON
+autocmd Filetype json setlocal tabstop=2 shiftwidth=2
+
 " automatically refresh files from disk when they are changed by other program
 :set autoread
+
+" let g:PreserveNoEOL = 1
+
+autocmd InsertEnter * syn clear EOLWS | syn match EOLWS excludenl /\s\+\%#\@!$/
+autocmd InsertLeave * syn clear EOLWS | syn match EOLWS excludenl /\s\+$/
+highlight EOLWS ctermbg=red guibg=red
